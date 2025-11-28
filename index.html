@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Countdown Ulang Tahun — NEXT LEVEL ✨</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Parallax layers -->
+  <div id="parallax">
+    <div class="layer stars" data-depth="0.02"></div>
+    <div class="layer clouds" data-depth="0.05"></div>
+    <div class="layer blush" data-depth="0.12"></div>
+  </div>
+
+  <!-- canvas for butterflies & fireworks & confetti -->
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Sparkles container -->
+  <div id="sparkles"></div>
+
+  <!-- hearts & balloons are appended to body by JS -->
+
+  <!-- Main card -->
+  <main id="app" class="enter">
+    <section class="portal" id="portal">
+      <h2>Countdown to Your Special Day</h2>
+      <p class="mini">Tirai akan terbuka...</p>
+    </section>
+
+    <section class="card" id="card">
+      <div class="photo-wrap" id="photoWrap" tabindex="0" title="Klik 3x untuk kejutan">
+        <div class="photo-aura" id="photoAura"></div>
+        <img id="photo" src="foto3.jpeg" alt="Foto Pacar — ganti file foto.jpg" />
+      </div>
+
+      <div class="content">
+        <h1 id="headline">ADA YANG MAU HBD NIH BENTAR LAGI❤️</h1>
+        <p class="sub">09 Desember 2025</p>
+
+        <div class="countdown" role="timer" aria-live="polite">
+          <div class="box"><span id="days">0</span><small>Hari</small></div>
+          <div class="box"><span id="hours">0</span><small>Jam</small></div>
+          <div class="box"><span id="minutes">0</span><small>Menit</small></div>
+          <div class="box"><span id="seconds">0</span><small>Detik</small></div>
+        </div>
+
+        
+        <div class="controls">
+          <button id="celebrateBtn" class="btn accent">Rayakan Sekarang</button>
+          <button id="secretBtn" class="btn">Pesan Rahasia</button>
+        </div>
+
+        <div id="messageBubble" class="message-bubble" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Hidden audio (ganti file atau URL) -->
+  <audio id="birthdayAudio" src="happy_bday_loop.mp3" preload="auto"></audio>
+
+  <!-- WA fallback modal (apparent if popup blocked) -->
+  <div id="waModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-inner">
+      <h3>Kiriman WA</h3>
+      <p>Browser memblokir pembukaan otomatis. Klik tombol ini untuk mengirim pesan via WhatsApp:</p>
+      <div class="modal-actions">
+        <a id="waLink" class="btn accent" href="#" target="_blank" rel="noopener">Buka WhatsApp & Kirim</a>
+        <button id="waClose" class="btn">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

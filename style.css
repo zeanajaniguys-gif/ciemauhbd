@@ -1,0 +1,117 @@
+:root{
+  --bg1: #091026;
+  --bg2: #ffdcf0;
+  --accent: #ff6fa8;
+  --soft: #fff0f8;
+  --glass: rgba(255,255,255,0.08);
+  --radius: 18px;
+  --ease: cubic-bezier(.25,.8,.25,1);
+}
+
+/* Reset */
+*{box-sizing:border-box}html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #0b1030 0%, #26123a 45%, #ffedf9 100%);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* Parallax layers */
+#parallax{position:fixed;inset:0;pointer-events:none;z-index:0}
+.layer{position:absolute;inset:0;background-repeat:repeat;transform:translate3d(0,0,0)}
+.layer.stars{background-image:radial-gradient(#fff 0.6px, transparent 0.6px); background-size: 20px 20px; opacity:0.35; filter:blur(0.6px)}
+.layer.clouds{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); opacity:0.5; mix-blend-mode:screen; filter:blur(18px) saturate(1.2)}
+.layer.blush{background:radial-gradient(ellipse at 20% 20%, rgba(255,120,160,0.12), transparent 10%), radial-gradient(ellipse at 80% 80%, rgba(255,200,240,0.08), transparent 12%); opacity:0.9}
+
+/* fx canvas */
+#fxCanvas{position:fixed;left:0;top:0;width:100%;height:100%;z-index:2;pointer-events:none}
+
+/* sparkles */
+#sparkles{position:fixed;inset:0;z-index:3;pointer-events:none}
+
+/* main card */
+main#app{position:relative;z-index:4;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+.card{
+  width:100%;
+  max-width:980px;
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap:28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius: calc(var(--radius) + 6px);
+  padding:28px;
+  box-shadow: 0 20px 60px rgba(3,6,20,0.6);
+  backdrop-filter: blur(6px) saturate(1.1);
+  transform-origin:center;
+  transition: transform 900ms var(--ease), box-shadow 700ms var(--ease);
+}
+
+/* portal intro */
+.portal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;pointer-events:none;opacity:1;transition:opacity 800ms var(--ease)}
+.portal h2{color:var(--soft);font-size:18px;margin-bottom:6px;letter-spacing:1px}
+.portal .mini{color:rgba(255,255,255,0.6);font-size:13px}
+
+/* photo & aura */
+.photo-wrap{width:220px;height:220px;border-radius:50%;overflow:hidden;position:relative;margin:auto;cursor:pointer;outline:none}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1);transition:transform 600ms var(--ease), filter 600ms var(--ease)}
+.photo-aura{
+  position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,110,145,0.25), rgba(255,110,145,0.06) 45%, transparent 65%);
+  filter:blur(30px); transition:transform 800ms var(--ease), opacity 800ms var(--ease); transform:scale(1); opacity:0.9; pointer-events:none;
+}
+
+/* heart pulse (applied later) */
+.pulse{animation: heartPulse 2.6s ease-in-out infinite}
+@keyframes heartPulse{
+  0%{transform:scale(1); filter:drop-shadow(0 0 0 rgba(255,110,145,0.0))}
+  50%{transform:scale(1.04); filter:drop-shadow(0 12px 24px rgba(255,110,145,0.12))}
+  100%{transform:scale(1); filter:drop-shadow(0 0 0 rgba(255,110,145,0.0))}
+}
+
+/* content */
+.content{padding:6px 8px;display:flex;flex-direction:column;justify-content:center}
+h1{font-size:28px;margin:0;color:var(--accent);text-shadow:0 6px 30px rgba(255,100,140,0.12)}
+.sub{color:rgba(255,255,255,0.7);margin-top:6px}
+
+/* countdown boxes */
+.countdown{display:flex;gap:12px;margin-top:18px}
+.countdown .box{flex:1;background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;text-align:center;transition:transform 350ms var(--ease)}
+.countdown .box span{display:block;font-size:28px;font-weight:700;color:var(--accent)}
+.countdown .box small{display:block;color:rgba(255,255,255,0.7);margin-top:6px}
+
+/* controls */
+.controls{display:flex;gap:12px;margin-top:22px}
+.btn{border:0;padding:10px 14px;border-radius:12px;cursor:pointer;background:rgba(255,255,255,0.06);color:#fff;font-weight:600;transition:transform 180ms var(--ease)}
+.btn.accent{background:linear-gradient(90deg,var(--accent), #ff9dbf);box-shadow:0 10px 30px rgba(255,110,145,0.12)}
+.btn:active{transform:scale(.98)}
+
+/* floating message bubble */
+.message-bubble{position:relative;margin-top:18px;min-height:48px}
+.message {
+  display:inline-block;
+  background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  padding:10px 14px;border-radius:14px;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,0.3);margin-bottom:8px;opacity:0;transform:translateY(10px);transition:transform 600ms var(--ease), opacity 600ms var(--ease)
+}
+
+/* modal */
+.modal{position:fixed;inset:0;background:linear-gradient(rgba(2,6,20,0.6), rgba(2,6,20,0.6));display:flex;align-items:center;justify-content:center;z-index:9999}
+.modal.hidden{display:none}
+.modal-inner{background:#fff;color:#111;padding:20px;border-radius:12px;max-width:420px;text-align:left}
+.modal .btn{color:#111}
+
+/* responsive */
+@media (max-width:880px){
+  .card{grid-template-columns: 1fr; padding:20px}
+  .photo-wrap{width:140px;height:140px}
+  .countdown .box span{font-size:22px}
+  .portal{display:none}
+}
+
+/* celebration (applied when class .celebrate on body) */
+body.celebrate{
+  background: linear-gradient(180deg,#1b042d 0%, #ffedf9 100%);
+}
+body.celebrate .card{box-shadow:0 30px 80px rgba(255,150,180,0.12); transform: scale(1.02)}
+body.celebrate #headline{transform:translateY(-6px) scale(1.02); text-shadow:0 20px 40px rgba(255,190,220,0.18)}
